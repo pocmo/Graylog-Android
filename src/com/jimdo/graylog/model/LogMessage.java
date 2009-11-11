@@ -20,8 +20,6 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.model;
 
-import java.util.ArrayList;
-
 /**
  * A Log Message of GrayLog
  * 
@@ -31,6 +29,36 @@ public class LogMessage
 {
 	private LogEntry logentry;
 
+	/**
+	 * Get text of the log message
+	 * 
+	 * @return the log message text
+	 */
+	public String getText()
+	{
+		return this.getLogEntry().getMessage();
+	}
+	
+	/**
+	 * Get the host of the log message
+	 *  
+	 * @return hostname
+	 */
+	public String getHost()
+	{
+		return this.getLogEntry().getFromHost();
+	}
+	
+	/**
+	 * Get priority of the log message
+	 * 
+	 * @return priority, see constants in Priority.*
+	 */
+	public int getPriority()
+	{
+		return this.getLogEntry().getPriority();
+	}
+	
 	/**
 	 * Get the deserialized LogEntry
 	 * 
