@@ -3,11 +3,11 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-	<ImageView
-	    android:src="@drawable/graylog_logo"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	     />
+    <ImageView
+        android:src="@drawable/graylog_logo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background" />
 	<TextView
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
@@ -16,7 +16,8 @@
 	    android:id="@+id/baseUrl"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:text="http://" />
+	    android:text="http://"
+	    android:singleLine="true"/>
 	<TextView
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
@@ -25,11 +26,13 @@
 	    android:id="@+id/username"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:text=""/>
+	    android:text=""
+	    android:singleLine="true"/>
 	<TextView
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:text="Password" />
+	    android:text="Password"
+	    android:singleLine="true" />
 	<EditText
 	    android:id="@+id/password"
 	    android:layout_width="fill_parent"
