@@ -57,8 +57,6 @@ public class LogListAdapter extends BaseAdapter {
 		}
 		
 		Log.d("LogListAdapter", "Requesting......");
-		
-		new Request().execute();
 	}
 	
 	public int getCount()
