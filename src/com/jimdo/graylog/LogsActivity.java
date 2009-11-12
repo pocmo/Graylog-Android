@@ -21,6 +21,8 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 package com.jimdo.graylog;
 
 import android.app.Activity;
+
+import android.app.ListActivity;
 import android.os.Bundle;
 
 /**
@@ -28,9 +30,12 @@ import android.os.Bundle;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LogsActivity extends Activity {
+public class LogsActivity extends ListActivity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.logs);
+        setListAdapter(new LogListAdapter());
     }
 }
