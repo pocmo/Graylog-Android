@@ -20,12 +20,12 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.view;
 
-import com.jimdo.graylog.LogListAdapter;
-import com.jimdo.graylog.R;
-import com.jimdo.graylog.R.layout;
-
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.jimdo.graylog.LogListAdapter;
+import com.jimdo.graylog.R;
 
 /**
  * Shows a list of log messages
