@@ -18,9 +18,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
-package com.jimdo.graylog;
+package com.jimdo.graylog.view;
 
-import android.app.Activity;
+import com.jimdo.graylog.LogListAdapter;
+import com.jimdo.graylog.R;
+import com.jimdo.graylog.R.layout;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -35,7 +37,10 @@ public class LogsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
+        LogListAdapter adapter = new LogListAdapter();
+        setListAdapter(adapter);
+		
         setContentView(R.layout.logs);
-        setListAdapter(new LogListAdapter());
     }
 }

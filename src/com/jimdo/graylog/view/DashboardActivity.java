@@ -18,7 +18,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
-package com.jimdo.graylog;
+package com.jimdo.graylog.view;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -30,7 +30,8 @@ import android.os.Bundle;
  */
 public class DashboardActivity extends Activity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
     }
 }

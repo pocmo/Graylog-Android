@@ -18,19 +18,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
-package com.jimdo.graylog;
+package com.jimdo.graylog.view;
+
+import com.jimdo.graylog.R;
+import com.jimdo.graylog.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Shows the available categories
+ * The Login Activity - Everything start's here...
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class CategoriesActivity extends Activity {
+public class LoginActivity extends Activity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.login);
     }
 }
