@@ -37,8 +37,6 @@ public class DashboardActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-    	Log.d(TAG, "Dashboard here...");
-    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
     }
