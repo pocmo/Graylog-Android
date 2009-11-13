@@ -20,6 +20,8 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  * A Log Message of GrayLog
  * 
@@ -29,6 +31,14 @@ public class LogMessage
 {
 	private LogEntry logentry;
 
+	/**
+	 * Get the Id of the log message 
+	 */
+	public int getId()
+	{
+		return this.getLogEntry().getId();
+	}
+	
 	/**
 	 * Get text of the log message
 	 * 
@@ -79,5 +89,38 @@ public class LogMessage
 	public void setLogEntry(LogEntry logentry)
 	{
 		this.logentry = logentry;
+	}
+	
+	/**
+	 * Get relative time of log message
+	 * 
+	 * @return String relative time like 5 days ago
+	 */
+	public String getRelativeTime()
+	{
+		String recievedAt = logentry.getReceivedAt();
+		
+		try {
+			long delta = new Date().getTime() / 1000 - new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(recievedAt).getTime() / 1000;
+			
+			if (delta < 60) {
+				return "less than a minute ago";
+			} else if (delta < 120) {
+				return "about a minute ago";
+			} else if (delta < 3600) {
+				return ((int) (delta / 60)) + " minutes ago";
+			} else if (delta < 7200) {
+				return "about an hour ago";
+			} else if (delta < 86400) {
+				return ((int) (delta / 3600)) + " hours ago";
+			} else if (delta < 172800) {
+				return "about one day ago";
+			} else {
+				return ((int) (delta / 86400)) +  " days ago";
+			}
+		}
+		catch (Exception e) {
+			return recievedAt;
+		}
 	}
 }
