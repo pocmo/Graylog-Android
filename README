@@ -1,11 +1,15 @@
 Graylog client for Android devices
 
-Graylog is a rsyslog web interface based on Ruby On Rails
+Graylog is a rsyslog web interface based on Ruby On Rails:
 http://github.com/lennartkoopmann/Graylog
 
-Watch your favourite errors now on your mobile!
+Watch your favorite errors now mobile on your android device! :)
 
---------------------------------------------------------------------------------
+
+This source code includes:
+- Flexjson (Apache License 2.0)
+  http://flexjson.sourceforge.net/
+
 
 Graylog (Android Client) is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public License
