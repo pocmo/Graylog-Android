@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.util.Log;
 
@@ -39,49 +40,50 @@ import com.jimdo.graylog.model.LogMessage;
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
 public class LogListAdapter extends BaseAdapter {
+	public final static String TAG = "Graylog/LogListAdapter"; 
+	
 	private ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
 	
-	public LogListAdapter()
-	{
-		// Some dummy data
-		for (int i = 0; i < 5; i++) {
-			LogEntry entry = new LogEntry();
-			entry.setMessage("Mama i'm broken (" + i + ")!");
-			entry.setId(1);
-			entry.setFromHost("www" + (20 + i));
-			entry.setReceivedAt("2009-09-08T12:39:17+02:00");
-			
-			LogMessage message = new LogMessage();
-			message.setLogEntry(entry);
-			messages.add(message);
-		}
-		
-		Log.d("LogListAdapter", "Requesting......");
-	}
-	
+	/**
+	 * Get number of items
+	 */
 	public int getCount()
 	{
-		return messages.size();
+		return messages.size() + 1;
 	}
 	
+	/**
+	 * Get item at specified location
+	 */
 	public Object getItem(int location)
 	{
 		return location;
 	}
 	
+	/**
+	 * Get id of item at specified location
+	 */
 	public long getItemId(int location)
 	{
 		return location;
 	}
 	
 	/**
-	 * Get View of an list element
+	 * Get View of a list element
 	 */
 	public View getView(int location, View v, ViewGroup p)
 	{
+		LayoutInflater inflater = (LayoutInflater) p.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		if (location == messages.size()) {
+			return inflater.inflate(R.layout.loading, null);
+		}
+		if (location == messages.size()) {
+			// XXX: Load new items
+		}
+		
 		LogMessage message = messages.get(location);
 		
-		LayoutInflater inflater = (LayoutInflater) p.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		v = inflater.inflate(R.layout.message, null);
 
 		TextView tv;
