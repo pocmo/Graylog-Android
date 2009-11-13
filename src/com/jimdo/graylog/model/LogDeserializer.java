@@ -20,8 +20,9 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.model;
 
-import flexjson.JSONDeserializer;
 import java.util.ArrayList;
+
+import flexjson.JSONDeserializer;
 
 /**
  * Deserializer for Log Messages (JSON)
