@@ -69,6 +69,18 @@ public class LogListAdapter extends BaseAdapter {
 	}
 	
 	/**
+	 * Add ArrayList of messages to the existing messages
+	 * 
+	 * @param newMessages
+	 */
+	public void mergeWith(ArrayList<LogMessage> newMessages)
+	{
+		for (LogMessage message : newMessages) {
+			messages.add(message);
+		}
+	}
+	
+	/**
 	 * Get View of a list element
 	 */
 	public View getView(int location, View v, ViewGroup p)
