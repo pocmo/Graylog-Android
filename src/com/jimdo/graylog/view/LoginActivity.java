@@ -20,22 +20,40 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.view;
 
-import com.jimdo.graylog.R;
-import com.jimdo.graylog.R.layout;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
+import com.jimdo.graylog.R;
 
 /**
  * The Login Activity - Everything start's here...
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LoginActivity extends Activity {
-    @Override
+public class LoginActivity extends Activity implements OnClickListener {
+	public static final String TAG = "Graylog/LoginActivity";
+	
+	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        Button button = (Button) findViewById(R.id.loginButton);
+        button.setOnClickListener(this);
     }
+
+	/**
+	 * OnClickListener..
+	 */
+	public void onClick(View v)
+	{
+		Log.d(TAG, "Login...");
+		startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+	}
 }
