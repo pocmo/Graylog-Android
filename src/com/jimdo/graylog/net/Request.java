@@ -18,7 +18,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Yaaic.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.jimdo.graylog;
+package com.jimdo.graylog.net;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
