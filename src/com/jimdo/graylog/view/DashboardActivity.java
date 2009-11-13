@@ -20,8 +20,11 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.view;
 
+import com.jimdo.graylog.R;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
  * Shows the dashboard
@@ -29,9 +32,14 @@ import android.os.Bundle;
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
 public class DashboardActivity extends Activity {
+	public static final String TAG = "Graylog/DashboardActivity";
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+    	Log.d(TAG, "Dashboard here...");
+    	
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.dashboard);
     }
 }
