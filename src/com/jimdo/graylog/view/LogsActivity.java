@@ -22,7 +22,6 @@ package com.jimdo.graylog.view;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.jimdo.graylog.LogListAdapter;
 import com.jimdo.graylog.R;
