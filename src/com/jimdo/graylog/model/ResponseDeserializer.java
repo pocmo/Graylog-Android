@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import flexjson.JSONDeserializer;
 
 /**
- * Deserializer for Log Messages (JSON)
+ * Deserializer for Responses (JSON)
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LogDeserializer {
+public class ResponseDeserializer {
 	/**
 	 * Deserializes log message from JSON
 	 * 
@@ -37,8 +37,20 @@ public class LogDeserializer {
 	 * 
 	 * @return List of deserialized log messages
 	 */
-	public static ArrayList<LogMessage> deserialize(String json) {
+	public static ArrayList<LogMessage> deserializeLogMessages(String json) {
 		JSONDeserializer<ArrayList<LogMessage>> deserializer = new JSONDeserializer<ArrayList<LogMessage>>();
 		return deserializer.deserialize(json);		
+	}
+	
+	/**
+	 * Deserialize dashboard from JSON
+	 * 
+	 * @param json Serialized dashboard (JSON)
+	 * 
+	 * @return deserialized Dashboard
+	 */
+	public static Dashboard deserializeDashboard(String json) {
+		JSONDeserializer<Dashboard> deserializer = new JSONDeserializer<Dashboard>();
+		return deserializer.deserialize(json);
 	}
 }
