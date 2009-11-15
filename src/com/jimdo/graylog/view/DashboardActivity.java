@@ -26,6 +26,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +64,15 @@ public class DashboardActivity extends Activity implements Runnable {
         this.status  = (TextView) findViewById(R.id.status);
         this.footer  = (TextView) findViewById(R.id.footer);
         
-        dialog = ProgressDialog.show(this, "Loading..", "Loading dashboard from server...", true, false);
+        this.refresh();
+    }
+
+    /**
+     * Refresh dashboard, reload from server
+     */
+    public void refresh()
+    {
+    	dialog = ProgressDialog.show(this, "Loading..", "Loading dashboard from server...", true, false);
 
         new Thread(this).start();
     }
@@ -80,6 +91,37 @@ public class DashboardActivity extends Activity implements Runnable {
     	footer.setText("Don't play with your phone. Fix it!");
     }
     
+	/**
+	 * Options Menu
+	 * 
+	 * @param menu 
+	 */
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.dashboard, menu);
+
+	    return true;
+	}
+	
+    /**
+     * On options item selected
+     * 
+     * @param item
+     */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.refresh:
+				this.refresh();
+				break;
+			case R.id.logout:
+				this.finish();
+				break;
+		}
+		return true;
+	}
+    
     /**
      * Will be called by the update thread on failure
      */
@@ -94,7 +136,7 @@ public class DashboardActivity extends Activity implements Runnable {
     public void run()
     {
     	Log.d(TAG, "Loading dashboard...");
-
+    	
     	try {
     		UrlBuilder builder = new UrlBuilder(baseUrl);
     		Request request = new Request();
