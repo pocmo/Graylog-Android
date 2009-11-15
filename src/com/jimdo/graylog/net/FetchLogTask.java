@@ -28,8 +28,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.jimdo.graylog.LogListAdapter;
-import com.jimdo.graylog.model.LogDeserializer;
 import com.jimdo.graylog.model.LogMessage;
+import com.jimdo.graylog.model.ResponseDeserializer;
 
 /**
  * Asynchronous Task to fetch log messages from the server
@@ -58,7 +58,7 @@ public class FetchLogTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
 			String response = request.execute(urls[0]);
 			
 			// Deserialize Messages
-			return LogDeserializer.deserialize(response);
+			return ResponseDeserializer.deserializeLogMessages(response);
 		}
 		catch (Exception e) {
 			Log.d(TAG, "Exception: " + e.getMessage());
