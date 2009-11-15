@@ -30,6 +30,10 @@
             android:label="Graylog : About"
             android:theme="@android:style/Theme.Dialog">
         </activity>
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="Graylog : Settings">
+        </activity>
     </application>
     
     <uses-permission android:name="android.permission.INTERNET" />

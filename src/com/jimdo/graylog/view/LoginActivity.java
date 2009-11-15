@@ -27,6 +27,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.URLUtil;
@@ -65,6 +68,39 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
         Button button = (Button) findViewById(R.id.loginButton);
         button.setOnClickListener(this);
     }
+	
+	/**
+	 * Options Menu
+	 * 
+	 * @param menu 
+	 */
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.login, menu);
+	    return true;
+	}
+    
+    /**
+     * On options item selected
+     * 
+     * @param item
+     */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.settings:
+				startActivity(new Intent(LoginActivity.this, SettingsActivity.class));
+				break;
+			case R.id.about:
+				startActivity(new Intent(LoginActivity.this, AboutActivity.class));
+				break;
+			case R.id.exit:
+				this.finish();
+				break;
+		}
+		return true;
+	}
 
 	/**
 	 * OnClickListener..
