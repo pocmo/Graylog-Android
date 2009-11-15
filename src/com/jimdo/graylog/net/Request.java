@@ -31,6 +31,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.util.Log;
+
 /**
  * Do an API Request via HTTP
  *
@@ -38,21 +40,26 @@ import org.apache.http.impl.client.DefaultHttpClient;
  */
 public class Request
 {
+	private String TAG = "Graylog/Request";
+	
 	private DefaultHttpClient httpClient = new DefaultHttpClient();
 	
 	/**
 	 * Execute a request
 	 * 
-	 * @param uri
+	 * @param url
 	 * @return Content of the response
 	 */
-	public String execute(String uri)
+	public String execute(String url)
 	{
+		Log.d(TAG, "Request to " + url);
+		
 		try {
-			HttpGet getRequest = new HttpGet(uri);
+			HttpGet getRequest = new HttpGet(url);
 			HttpResponse response = (HttpResponse) httpClient.execute(getRequest);
-			
+
 			HttpEntity entity = response.getEntity();
+			
 			if (entity != null) {
 				InputStream stream = entity.getContent();
 				Header contentEncoding = response.getFirstHeader("Content-Encoding");
@@ -70,10 +77,12 @@ public class Request
 					sb.append(line + "\n");
 				}
 				
-				return sb.toString();
+				//Log.d(TAG, "Response: " + sb);
+				
+				return sb.toString().trim();
 			}
 		} catch(Exception e) {
-			// will return null
+			Log.d(TAG, "Exception: " + e.getMessage());
 		}
 		
 		return null;
