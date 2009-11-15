@@ -21,12 +21,17 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 package com.jimdo.graylog.view;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jimdo.graylog.R;
 
@@ -35,14 +40,24 @@ import com.jimdo.graylog.R;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends Activity implements OnClickListener, Runnable {
 	public static final String TAG = "Graylog/LoginActivity";
+	
+	private EditText baseUrl;
+	private EditText username;
+	private EditText password;
+	
+	private ProgressDialog dialog;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        
+        this.baseUrl  = (EditText) findViewById(R.id.baseUrl);
+        this.username = (EditText) findViewById(R.id.username);
+        this.password = (EditText) findViewById(R.id.password);
 
         Button button = (Button) findViewById(R.id.loginButton);
         button.setOnClickListener(this);
@@ -54,6 +69,48 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public void onClick(View v)
 	{
 		Log.d(TAG, "Login...");
-		startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+
+		dialog = ProgressDialog.show(this, "Login..", "Trying to connect to server...", true, false);
+		
+		new Thread(this).start();
 	}
+	
+	/**
+	 * Thread for login
+	 */
+	public void run()
+	{
+		String baseUrl  = this.baseUrl.getText().toString();
+		String username = this.username.getText().toString();
+		String password = this.password.getText().toString();
+		
+		if (false /* Login missing */) {
+			// Login successful, let's go to the Dashboard
+			startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+		} else {
+			// Login failed...
+			handler.sendEmptyMessage(0);
+		}
+		
+		dialog.dismiss();
+	}
+	
+	/**
+	 * Will be called by the login thread on failure
+	 */
+	public void loginFailed()
+	{
+		String baseUrl  = this.baseUrl.getText().toString();
+		Toast.makeText(this, "Can't connect to server '" + baseUrl + "'", Toast.LENGTH_SHORT).show();
+	}
+	
+	/**
+	 * Handler for login thread
+	 */
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			loginFailed();
+		}
+	};
 }
