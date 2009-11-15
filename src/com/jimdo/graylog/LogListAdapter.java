@@ -27,11 +27,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.util.Log;
 
-import com.jimdo.graylog.model.LogEntry;
 import com.jimdo.graylog.model.LogMessage;
 
 /**
