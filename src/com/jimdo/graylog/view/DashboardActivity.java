@@ -62,7 +62,7 @@ public class DashboardActivity extends Activity implements Runnable {
         this.footer  = (TextView) findViewById(R.id.footer);
         
         dialog = ProgressDialog.show(this, "Loading..", "Loading dashboard from server...", true, false);
-        
+
         new Thread(this).start();
     }
     
@@ -73,7 +73,9 @@ public class DashboardActivity extends Activity implements Runnable {
      */
     public void update(Dashboard dashboard)
     {
-    	message.setText(dashboard.getLastMessage());
+    	String lastMessage = dashboard.getLastMessage();
+    	
+    	message.setText(lastMessage.length() > 140 ? lastMessage.substring(0, 140) : lastMessage);
     	status.setText(dashboard.getMessages() + " messages in the last " + dashboard.getTimeSpan() + " minutes");
     	footer.setText("Don't play with your phone. Fix it!");
     }

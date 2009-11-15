@@ -14,9 +14,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:gravity="center_horizontal"
-        android:padding="5px"
-        android:drawableLeft="@android:drawable/presence_online"
-        android:drawablePadding="2px" />
+        android:padding="5px" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

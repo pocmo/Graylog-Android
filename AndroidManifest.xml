@@ -15,7 +15,8 @@
         </activity>
         <activity
             android:name=".view.DashboardActivity"
-            android:label="Graylog : Dashboard" />
+            android:label="Graylog : Dashboard"
+            android:configChanges="keyboardHidden|orientation" />
         <activity
             android:name=".view.LogsActivity"
             android:label="Graylog : Messages">
