@@ -22,7 +22,7 @@ package com.jimdo.graylog.model;
 
 import java.util.ArrayList;
 
-import flexjson.JSONDeserializer;
+import android.util.Log;
 
 /**
  * Deserializer for Responses (JSON)
@@ -30,6 +30,8 @@ import flexjson.JSONDeserializer;
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
 public class ResponseDeserializer {
+	public static final String TAG = "Graylog/ResponseDeserializer";
+	
 	/**
 	 * Deserializes log message from JSON
 	 * 
@@ -38,8 +40,8 @@ public class ResponseDeserializer {
 	 * @return List of deserialized log messages
 	 */
 	public static ArrayList<LogMessage> deserializeLogMessages(String json) {
-		JSONDeserializer<ArrayList<LogMessage>> deserializer = new JSONDeserializer<ArrayList<LogMessage>>();
-		return deserializer.deserialize(json);		
+		// TODO: replace flexjson, use org.json.*
+		return null;
 	}
 	
 	/**
@@ -50,7 +52,7 @@ public class ResponseDeserializer {
 	 * @return deserialized Dashboard
 	 */
 	public static Dashboard deserializeDashboard(String json) {
-		JSONDeserializer<Dashboard> deserializer = new JSONDeserializer<Dashboard>();
-		return deserializer.deserialize(json);
+		// TODO: replace flexjson, use org.json.*
+		return null;
 	}
 }
