@@ -57,7 +57,7 @@ public class UrlBuilder {
 	 * 
 	 * @return The Url
 	 */
-	public String getApiUrl() {
+	public String getDashboardUrl() {
 		return baseUrl + "dashboard/api";
 	}
 }
