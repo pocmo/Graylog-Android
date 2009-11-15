@@ -27,15 +27,6 @@ package com.jimdo.graylog.model;
  */
 public class Dashboard
 {
-	/*
-	 * 	///  [error] [client 187.141.12.30] PHP Fatal error: Call to a member function getParentBannerId() on a non-object in /var/www/affiliate.jimdo-server.com/include/Pap/Tracking/Impression/Save.class.php on line 88, referer: http://www.jimdo.com/info/framebuster/
-		{
-			"timespan":10,
-			"last_message":"xxxx",
-			"messages":5,
-			"status":"success"
-		}
-	 */
 	private int timeSpan;
 	private String lastMessage;
 	private int messages;

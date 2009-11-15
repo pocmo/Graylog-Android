@@ -22,6 +22,8 @@ package com.jimdo.graylog.model;
 
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 import android.util.Log;
 
 /**
@@ -52,7 +54,19 @@ public class ResponseDeserializer {
 	 * @return deserialized Dashboard
 	 */
 	public static Dashboard deserializeDashboard(String json) {
-		// TODO: replace flexjson, use org.json.*
-		return null;
+		try {
+			JSONObject object = new JSONObject(json);
+			
+			Dashboard dashboard = new Dashboard();
+			dashboard.setTimeSpan(object.getInt("timespan"));
+			dashboard.setLastMessage(object.getString("last_message"));
+			dashboard.setMessages(object.getInt("messages"));
+			dashboard.setStatus(object.getString("status"));
+
+			return dashboard;
+		} catch(Exception e) {
+			Log.d(TAG, "Exception: " + e.getMessage());
+			return null;
+		}
 	}
 }
