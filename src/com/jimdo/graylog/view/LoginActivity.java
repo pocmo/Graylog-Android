@@ -34,6 +34,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jimdo.graylog.R;
+import com.jimdo.graylog.net.Request;
+import com.jimdo.graylog.net.UrlBuilder;
 
 /**
  * The Login Activity - Everything start's here...
@@ -84,11 +86,15 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 		String username = this.username.getText().toString();
 		String password = this.password.getText().toString();
 		
-		if (false /* Login missing */) {
-			// Login successful, let's go to the Dashboard
-			startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+		UrlBuilder builder = new UrlBuilder(baseUrl);
+		Request request = new Request();
+		String response = request.execute(builder.getPingUrl());
+		
+		if (response != null && response.equals("Graylog/Pong")) {
+			// Login successful
+			handler.sendEmptyMessage(1);
 		} else {
-			// Login failed...
+			// Login failed
 			handler.sendEmptyMessage(0);
 		}
 		
@@ -96,7 +102,7 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 	}
 	
 	/**
-	 * Will be called by the login thread on failure
+	 * Will be called by the login marvinthread on failure
 	 */
 	public void loginFailed()
 	{
@@ -110,7 +116,13 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			loginFailed();
+			if (msg.what == 1) {
+				Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+				intent.putExtra("baseUrl", baseUrl.getText().toString());
+				startActivity(intent);
+			} else {
+				loginFailed();
+			}
 		}
 	};
 }
