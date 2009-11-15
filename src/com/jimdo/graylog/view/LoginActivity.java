@@ -29,6 +29,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -71,10 +72,15 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 	public void onClick(View v)
 	{
 		Log.d(TAG, "Login...");
-
-		dialog = ProgressDialog.show(this, "Login..", "Trying to connect to server...", true, false);
 		
-		new Thread(this).start();
+		String url = baseUrl.getText().toString(); 
+		
+		if (URLUtil.isValidUrl(url)) {
+			dialog = ProgressDialog.show(this, "Login..", "Trying to connect to server...", true, false);
+			new Thread(this).start();
+		} else {
+			Toast.makeText(this, "Invalid Url '" + url + "'", Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	/**
