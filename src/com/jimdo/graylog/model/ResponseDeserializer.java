@@ -22,6 +22,7 @@ package com.jimdo.graylog.model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -42,8 +43,28 @@ public class ResponseDeserializer {
 	 * @return List of deserialized log messages
 	 */
 	public static ArrayList<LogMessage> deserializeLogMessages(String json) {
-		// TODO: replace flexjson, use org.json.*
-		return null;
+		try {
+			ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
+			JSONArray array = new JSONArray();
+			
+			for (int i = 0; i < array.length(); i++) {
+				LogMessage message = new LogMessage();
+				JSONObject object  = array.getJSONObject(i).getJSONObject("logentry");
+				
+				message.setId(object.getInt("ID"));
+				message.setHost(object.getString("FromHost"));
+				message.setPriority(object.getInt("Priority"));
+				message.setRecievedAt(object.getString("ReceivedAt"));
+				message.setText(object.getString("Message"));
+				
+				messages.add(message);
+			}
+			
+			return messages;
+		} catch(Exception e) {
+			Log.d(TAG, "Exception: " + e.getMessage());
+			return null;
+		}
 	}
 	
 	/**

@@ -29,14 +29,18 @@ import java.util.Date;
  */
 public class LogMessage
 {
-	private LogEntry logentry;
+	private int id;
+	private String host;
+	private int priority;
+	private String text;
+	private String recievedAt;
 
 	/**
 	 * Get the Id of the log message 
 	 */
 	public int getId()
 	{
-		return this.getLogEntry().getId();
+		return id;
 	}
 	
 	/**
@@ -46,7 +50,7 @@ public class LogMessage
 	 */
 	public String getText()
 	{
-		return this.getLogEntry().getMessage();
+		return text;
 	}
 	
 	/**
@@ -56,7 +60,7 @@ public class LogMessage
 	 */
 	public String getHost()
 	{
-		return this.getLogEntry().getFromHost();
+		return host;
 	}
 	
 	/**
@@ -66,31 +70,69 @@ public class LogMessage
 	 */
 	public int getPriority()
 	{
-		return this.getLogEntry().getPriority();
+		return priority;
 	}
 	
 	/**
-	 * Get the deserialized LogEntry
+	 * Get time the message was recieved
 	 * 
-	 * @return the deserialized LogEntry object
+	 * @return time, like 2009-09-08T12:39:17+02:00
 	 */
-	private LogEntry getLogEntry()
+	public String getRecievedAt()
 	{
-		return logentry;
+		return recievedAt;
+	}
+	
+	/**
+	 * Set unique id of log message
+	 * 
+	 * @param id
+	 */
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 
 	/**
-	 * Set the deserialized LogEntry
+	 * Set host of the log message
 	 * 
-	 * This method is used by the JSONDeserializer 
-	 * 
-	 * @param logentry
+	 * @param host hostname
 	 */
-	public void setLogEntry(LogEntry logentry)
+	public void setHost(String host)
 	{
-		this.logentry = logentry;
+		this.host = host;
 	}
-	
+
+	/**
+	 * Set priority
+	 * 
+	 * @param priority see constants in Priority.*
+	 */
+	public void setPriority(int priority)
+	{
+		this.priority = priority;
+	}
+
+	/**
+	 * Set text of log message
+	 * 
+	 * @param text
+	 */
+	public void setText(String text)
+	{
+		this.text = text;
+	}
+
+	/**
+	 * Set time the message was recieved
+	 * 
+	 * @param recievedAt time, like 2009-09-08T12:39:17+02:00 
+	 */
+	public void setRecievedAt(String recievedAt)
+	{
+		this.recievedAt = recievedAt;
+	}
+
 	/**
 	 * Get relative time of log message
 	 * 
@@ -98,8 +140,6 @@ public class LogMessage
 	 */
 	public String getRelativeTime()
 	{
-		String recievedAt = logentry.getReceivedAt();
-		
 		try {
 			long delta = new Date().getTime() / 1000 - new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(recievedAt).getTime() / 1000;
 			
