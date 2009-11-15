@@ -34,4 +34,35 @@ public class Priority {
 	public static final int NOTICE 		= 5;
 	public static final int INFO 		= 6;
 	public static final int DEBUG 		= 7;
+	
+	/**
+	 * Get priority as human readable text
+	 * 
+	 * @param priority
+	 * @return The priority as String
+	 */
+	public static String getReadable(int priority)
+	{
+		switch (priority)
+		{
+			case EMERGENCY:
+				return "Emergency";
+			case ALERT:
+				return "Alert";
+			case CRITICAL:
+				return "Critical";
+			case ERROR:
+				return "Error";
+			case WARNING:
+				return "Warning";
+			case NOTICE:
+				return "Notice";
+			case INFO:
+				return "Info";
+			case DEBUG:
+				return "Debug";
+			default:
+				return "Unknown";
+		}
+	}
 }
