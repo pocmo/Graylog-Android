@@ -47,7 +47,7 @@
 	        android:id="@+id/footer"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="about 25 minutes ago from www20"
+	        android:text=""
 	        android:textSize="12px"
 	        android:textColor="#ff3366"
             android:padding="3px" />

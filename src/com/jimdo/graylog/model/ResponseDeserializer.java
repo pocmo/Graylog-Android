@@ -45,8 +45,8 @@ public class ResponseDeserializer {
 	public static ArrayList<LogMessage> deserializeLogMessages(String json) {
 		try {
 			ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
-			JSONArray array = new JSONArray();
-			
+			JSONArray array = new JSONArray(json);
+
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject object  = array.getJSONObject(i);
 				messages.add(deserializeMessage(object));

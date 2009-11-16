@@ -51,8 +51,6 @@ public class FetchLogTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
 	protected ArrayList<LogMessage> doInBackground(String... urls)
 	{
 		try {
-			Log.d(TAG, "Fetching logs from " + urls[0]);
-			
 			// Do Request....
 			Request request = new Request();
 			String response = request.execute(urls[0]);
@@ -71,7 +69,7 @@ public class FetchLogTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
 	{
 		if (messages != null) {
 			adapter.mergeWith(messages);
-			adapter.notifyDataSetChanged();
+			//adapter.notifyDataSetChanged();
 		}
 	}
 }

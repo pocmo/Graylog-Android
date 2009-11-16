@@ -5,22 +5,35 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
     <TextView
+        android:id="@+id/message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text"
         android:paddingLeft="5px"
         android:paddingRight="5px"
         android:text=""
         android:textSize="14px"
-        android:textColor="#d4d0c8" />
-    <TextView
+        android:textColor="#d4d0c8"
+        android:background="#555555" />
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/footer"
-        android:text=""
-        android:textSize="12px"
-        android:textColor="#ff3366"
-        android:paddingLeft="5px"
-        android:paddingRight="5px"
-        android:paddingBottom="3px" />
+        android:orientation="horizontal"
+        android:background="#333333">
+        <TextView
+            android:id="@+id/priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xx"
+            android:textSize="11px"
+            android:padding="3px"
+            android:focusable="false" />
+        <TextView
+            android:id="@+id/footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xx"
+            android:textSize="12px"
+            android:textColor="#ff3366"
+            android:padding="3px" />
+    </LinearLayout>
 </LinearLayout>

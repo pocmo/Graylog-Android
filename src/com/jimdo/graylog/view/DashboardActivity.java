@@ -110,7 +110,9 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
     {
     	switch (v.getId()) {
     		case R.id.messagesButton:
-    			startActivity(new Intent(DashboardActivity.this, MessagesActivity.class));
+    			Intent intent = new Intent(DashboardActivity.this, MessagesActivity.class);
+    			intent.putExtra("baseUrl", baseUrl);
+    			startActivity(intent);
     			break;
     		case R.id.categoriesButton:
     			startActivity(new Intent(DashboardActivity.this, CategoriesActivity.class));
@@ -186,7 +188,6 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
     	public void handleMessage(Message msg) {
     		try {
     			String response = msg.getData().getString("response");
-    			Log.d(TAG, "Will deserialize string: " + response);
     			Dashboard dashboard = ResponseDeserializer.deserializeDashboard(response);
     			update(dashboard);
     		} catch (Exception e) {

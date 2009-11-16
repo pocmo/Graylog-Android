@@ -23,6 +23,7 @@ package com.jimdo.graylog;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jimdo.graylog.model.LogMessage;
+import com.jimdo.graylog.model.Priority;
+import com.jimdo.graylog.net.FetchLogTask;
+import com.jimdo.graylog.net.UrlBuilder;
 
 /**
  * Adapter for the List in LogsActivity
@@ -40,13 +44,30 @@ public class LogListAdapter extends BaseAdapter {
 	public final static String TAG = "Graylog/LogListAdapter"; 
 	
 	private ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
+	private boolean updateFromServer = true;
+	private boolean showLoadingItem = true;
+	
+	private String baseUrl;
+	
+	/**
+	 * Create a new LogListAdapter
+	 * 
+	 * @param baseUrl Base Url to Graylog
+	 */
+	public LogListAdapter(String baseUrl) {
+		this.baseUrl = baseUrl;
+	}
 	
 	/**
 	 * Get number of items
 	 */
 	public int getCount()
 	{
-		return messages.size() + 1;
+		if (showLoadingItem) {
+			return messages.size() + 1;
+		} else {
+			return messages.size();
+		}
 	}
 	
 	/**
@@ -72,9 +93,17 @@ public class LogListAdapter extends BaseAdapter {
 	 */
 	public void mergeWith(ArrayList<LogMessage> newMessages)
 	{
-		for (LogMessage message : newMessages) {
-			messages.add(message);
+		if (newMessages != null && newMessages.size() > 0) {
+			for (LogMessage message : newMessages) {
+				messages.add(message);
+			}
+			updateFromServer = true;
+		} else {
+			Log.d(TAG, "No new messages. Stopping updates..");
+			showLoadingItem = false;
 		}
+		
+		notifyDataSetChanged();
 	}
 	
 	/**
@@ -85,10 +114,16 @@ public class LogListAdapter extends BaseAdapter {
 		LayoutInflater inflater = (LayoutInflater) p.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		if (location == messages.size()) {
+			if (updateFromServer) {
+				Log.d(TAG, "Updating messages from server...");
+				
+				FetchLogTask task = new FetchLogTask(this);
+				UrlBuilder builder = new UrlBuilder(baseUrl);
+				task.execute(builder.getMessagesUrl(messages.size(), 20));
+				updateFromServer = false;
+			}
+			
 			return inflater.inflate(R.layout.loading, null);
-		}
-		if (location == messages.size()) {
-			// XXX: Load new items
 		}
 		
 		LogMessage message = messages.get(location);
@@ -97,13 +132,15 @@ public class LogListAdapter extends BaseAdapter {
 
 		TextView tv;
 		
-		tv = (TextView) v.findViewById(R.id.text);
+		tv = (TextView) v.findViewById(R.id.message);
 		tv.setText(message.getText().length() > 140 ? message.getText().substring(0, 139) : message.getText());
 		
 		tv = (TextView) v.findViewById(R.id.footer);
 		tv.setText(message.getRelativeTime() + " from " + message.getHost());
+		
+		tv = (TextView) v.findViewById(R.id.priority);
+		tv.setText(Priority.getReadable(message.getPriority()));
 
 		return v;
 	}
-
 }

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/server_icon"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:text="Loading new messages..." />
+    android:padding="3px">
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:paddingRight="5px" />
+	<TextView
+	    android:id="@+id/server_icon"
+	    android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:textColor="#ff3366"
+	    android:text="Loading messages..."
+	    android:gravity="center_vertical" />
+</LinearLayout>
