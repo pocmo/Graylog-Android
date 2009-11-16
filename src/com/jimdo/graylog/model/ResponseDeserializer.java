@@ -72,7 +72,7 @@ public class ResponseDeserializer {
 			
 			Dashboard dashboard = new Dashboard();
 			dashboard.setTimeSpan(object.getInt("timespan"));
-			dashboard.setLastMessage(object.getString("last_message"));
+			dashboard.setLastMessage(deserializeMessage(object.getJSONObject("last_message")));
 			dashboard.setMessages(object.getInt("messages"));
 			dashboard.setStatus(object.getString("status"));
 
