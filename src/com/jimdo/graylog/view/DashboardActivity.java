@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.jimdo.graylog.R;
 import com.jimdo.graylog.model.Dashboard;
+import com.jimdo.graylog.model.LogMessage;
 import com.jimdo.graylog.model.ResponseDeserializer;
 import com.jimdo.graylog.net.Request;
 import com.jimdo.graylog.net.UrlBuilder;
@@ -84,10 +85,11 @@ public class DashboardActivity extends Activity implements Runnable {
      */
     public void update(Dashboard dashboard)
     {
-    	String lastMessage = dashboard.getLastMessage();
+    	LogMessage lastMessage = dashboard.getLastMessage();
+    	String text = lastMessage.getText();
     	
-    	message.setText(lastMessage.length() > 140 ? lastMessage.substring(0, 140) : lastMessage);
-    	status.setText(dashboard.getMessages() + " messages in the last " + dashboard.getTimeSpan() + " minutes");
+    	message.setText(text.length() > 140 ? text.substring(0, 140) : text);
+    	status.setText(lastMessage.getRelativeTime() + " from " + lastMessage.getHost());
     	footer.setText("Don't play with your phone. Fix it!");
     }
     

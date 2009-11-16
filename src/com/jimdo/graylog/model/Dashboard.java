@@ -28,7 +28,7 @@ package com.jimdo.graylog.model;
 public class Dashboard
 {
 	private int timeSpan;
-	private String lastMessage;
+	private LogMessage lastMessage;
 	private int messages;
 	private String status;
 	
@@ -57,7 +57,7 @@ public class Dashboard
 	 * 
 	 * @return the last message
 	 */
-	public String getLastMessage()
+	public LogMessage getLastMessage()
 	{
 		return lastMessage;
 	}
@@ -67,7 +67,7 @@ public class Dashboard
 	 * 
 	 * @param lastMessage
 	 */
-	public void setLastMessage(String lastMessage)
+	public void setLastMessage(LogMessage lastMessage)
 	{
 		this.lastMessage = lastMessage;
 	}

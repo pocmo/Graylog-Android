@@ -48,16 +48,8 @@ public class ResponseDeserializer {
 			JSONArray array = new JSONArray();
 			
 			for (int i = 0; i < array.length(); i++) {
-				LogMessage message = new LogMessage();
-				JSONObject object  = array.getJSONObject(i).getJSONObject("logentry");
-				
-				message.setId(object.getInt("ID"));
-				message.setHost(object.getString("FromHost"));
-				message.setPriority(object.getInt("Priority"));
-				message.setRecievedAt(object.getString("ReceivedAt"));
-				message.setText(object.getString("Message"));
-				
-				messages.add(message);
+				JSONObject object  = array.getJSONObject(i);
+				messages.add(deserializeMessage(object));
 			}
 			
 			return messages;
@@ -86,6 +78,33 @@ public class ResponseDeserializer {
 
 			return dashboard;
 		} catch(Exception e) {
+			Log.d(TAG, "Exception: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * Deserialize a single log mesasge object
+	 * 
+	 * @param object json node to deserialize
+	 * @return
+	 */
+	private static LogMessage deserializeMessage(JSONObject object)
+	{
+		try {
+			LogMessage message = new LogMessage();
+			
+			object = object.getJSONObject("logentry");
+			
+			message.setId(object.getInt("ID"));
+			message.setHost(object.getString("FromHost"));
+			message.setPriority(object.getInt("Priority"));
+			message.setRecievedAt(object.getString("ReceivedAt"));
+			message.setText(object.getString("Message"));
+			
+			return message;
+		}
+		catch(Exception e) {
 			Log.d(TAG, "Exception: " + e.getMessage());
 			return null;
 		}
