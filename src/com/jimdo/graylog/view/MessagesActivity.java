@@ -22,6 +22,9 @@ package com.jimdo.graylog.view;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.jimdo.graylog.LogListAdapter;
 import com.jimdo.graylog.R;
@@ -32,6 +35,8 @@ import com.jimdo.graylog.R;
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
 public class MessagesActivity extends ListActivity {
+	private LogListAdapter adapter;
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -39,9 +44,37 @@ public class MessagesActivity extends ListActivity {
         
         String baseUrl = getIntent().getExtras().getString("baseUrl");
         
-        LogListAdapter adapter = new LogListAdapter(baseUrl);
+        adapter = new LogListAdapter(baseUrl);
         setListAdapter(adapter);
 		
         setContentView(R.layout.logs);
     }
+    
+	/**
+	 * Options Menu
+	 * 
+	 * @param menu 
+	 */
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.messages, menu);
+
+	    return true;
+	}
+    
+    /**
+     * On options item selected
+     * 
+     * @param item
+     */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.refresh:
+				adapter.refresh();
+				break;
+		}
+		return true;
+	}
 }

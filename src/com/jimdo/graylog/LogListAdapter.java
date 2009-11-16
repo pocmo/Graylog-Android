@@ -107,6 +107,16 @@ public class LogListAdapter extends BaseAdapter {
 	}
 	
 	/**
+	 * Refresh list from server
+	 */
+	public void refresh()
+	{
+		messages.clear();
+		updateFromServer = true;
+		notifyDataSetChanged();
+	}
+	
+	/**
 	 * Get View of a list element
 	 */
 	public View getView(int location, View v, ViewGroup p)
