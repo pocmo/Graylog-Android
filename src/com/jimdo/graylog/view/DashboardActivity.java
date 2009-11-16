@@ -22,6 +22,7 @@ package com.jimdo.graylog.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,12 +30,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jimdo.graylog.R;
 import com.jimdo.graylog.model.Dashboard;
 import com.jimdo.graylog.model.LogMessage;
+import com.jimdo.graylog.model.Priority;
 import com.jimdo.graylog.model.ResponseDeserializer;
 import com.jimdo.graylog.net.Request;
 import com.jimdo.graylog.net.UrlBuilder;
@@ -44,7 +48,7 @@ import com.jimdo.graylog.net.UrlBuilder;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class DashboardActivity extends Activity implements Runnable {
+public class DashboardActivity extends Activity implements OnClickListener, Runnable {
 	public static final String TAG = "Graylog/DashboardActivity";
 	
 	private ProgressDialog dialog;
@@ -53,6 +57,7 @@ public class DashboardActivity extends Activity implements Runnable {
 	private TextView message;
 	private TextView status;
 	private TextView footer;
+	private TextView priority;
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -60,10 +65,14 @@ public class DashboardActivity extends Activity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
         
-        this.baseUrl = getIntent().getExtras().getString("baseUrl");
-        this.message = (TextView) findViewById(R.id.message);
-        this.status  = (TextView) findViewById(R.id.status);
-        this.footer  = (TextView) findViewById(R.id.footer);
+        this.baseUrl  = getIntent().getExtras().getString("baseUrl");
+        this.message  = (TextView) findViewById(R.id.message);
+        this.status   = (TextView) findViewById(R.id.status);
+        this.footer   = (TextView) findViewById(R.id.footer);
+        this.priority = (TextView) findViewById(R.id.priority);
+        
+        findViewById(R.id.messagesButton).setOnClickListener(this);
+        findViewById(R.id.categoriesButton).setOnClickListener(this);
         
         this.refresh();
     }
@@ -91,6 +100,22 @@ public class DashboardActivity extends Activity implements Runnable {
     	message.setText(text.length() > 140 ? text.substring(0, 140) : text);
     	status.setText(dashboard.getMessages() + " messages in the last " + dashboard.getTimeSpan() + " minutes");
     	footer.setText(lastMessage.getRelativeTime() + " from " + lastMessage.getHost());
+    	priority.setText(Priority.getReadable(lastMessage.getPriority()));
+    }
+    
+    /**
+     * OnClickListener ...
+     */
+    public void onClick(View v)
+    {
+    	switch (v.getId()) {
+    		case R.id.messagesButton:
+    			startActivity(new Intent(DashboardActivity.this, MessagesActivity.class));
+    			break;
+    		case R.id.categoriesButton:
+    			startActivity(new Intent(DashboardActivity.this, CategoriesActivity.class));
+    			break;
+    	}
     }
     
 	/**
