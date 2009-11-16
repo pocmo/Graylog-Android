@@ -2,7 +2,8 @@
     <item
         android:id="@+id/settings"
         android:title="Settings"
-        android:icon="@android:drawable/ic_menu_preferences" />
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:visible="false" />
     <item
         android:id="@+id/about"
         android:title="About"
@@ -11,6 +12,5 @@
     <item
         android:id="@+id/exit"
         android:title="Exit"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:visible="false" />
+        android:icon="@android:drawable/ic_menu_close_clear_cancel" />
 </menu>
