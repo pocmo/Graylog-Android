@@ -16,10 +16,12 @@
         <activity
             android:name=".view.DashboardActivity"
             android:label="Graylog : Dashboard"
-            android:configChanges="keyboardHidden|orientation" />
+            android:configChanges="keyboardHidden|orientation">
+        </activity>
         <activity
-            android:name=".view.LogsActivity"
-            android:label="Graylog : Messages">
+            android:name=".view.MessagesActivity"
+            android:label="Graylog : Messages"
+            android:configChanges="keyboardHidden|orientation">
         </activity>
         <activity
             android:name=".view.CategoriesActivity"

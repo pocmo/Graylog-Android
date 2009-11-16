@@ -31,7 +31,7 @@ import com.jimdo.graylog.R;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LogsActivity extends ListActivity {
+public class MessagesActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
