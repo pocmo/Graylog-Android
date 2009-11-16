@@ -89,8 +89,8 @@ public class DashboardActivity extends Activity implements Runnable {
     	String text = lastMessage.getText();
     	
     	message.setText(text.length() > 140 ? text.substring(0, 140) : text);
-    	status.setText(lastMessage.getRelativeTime() + " from " + lastMessage.getHost());
-    	footer.setText("Don't play with your phone. Fix it!");
+    	status.setText(dashboard.getMessages() + " messages in the last " + dashboard.getTimeSpan() + " minutes");
+    	footer.setText(lastMessage.getRelativeTime() + " from " + lastMessage.getHost());
     }
     
 	/**

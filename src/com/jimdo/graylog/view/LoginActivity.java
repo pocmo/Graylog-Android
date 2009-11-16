@@ -132,7 +132,7 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 		Request request = new Request();
 		String response = request.execute(builder.getPingUrl());
 		
-		if (response != null && response.equals("Graylog/Pong")) {
+		if (response != null && response.equals("GrayLog/Pong")) {
 			// Login successful
 			handler.sendEmptyMessage(1);
 		} else {

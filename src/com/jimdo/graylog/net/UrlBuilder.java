@@ -49,7 +49,7 @@ public class UrlBuilder {
 	 * @return The Url
 	 */
 	public String getPingUrl() {
-		return baseUrl + "ping";
+		return baseUrl + "api/ping";
 	}
 	
 	/**
@@ -58,6 +58,15 @@ public class UrlBuilder {
 	 * @return The Url
 	 */
 	public String getDashboardUrl() {
-		return baseUrl + "dashboard/api";
+		return baseUrl + "api/getdashboard";
+	}
+	
+	/**
+	 * Get Url for Log Messages
+	 * 
+	 * @return The Url
+	 */
+	public String getMessagesUrl(int offset, int limit) {
+		return baseUrl + "api/getmessages?offset=" + offset + "&limit=" + limit;
 	}
 }
