@@ -23,15 +23,15 @@
             android:id="@+id/priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="xx"
+            android:text=""
             android:textSize="11px"
             android:padding="3px"
-            android:focusable="false" />
+            android:textColor="#eeeeee" />
         <TextView
             android:id="@+id/footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="xx"
+            android:text=""
             android:textSize="12px"
             android:textColor="#ff3366"
             android:padding="3px" />
