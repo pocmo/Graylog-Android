@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <ImageView
-        android:src="@drawable/graylog"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background" />
-	<TextView
+	<LinearLayout
+	    android:orientation="vertical"
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="Base URL:" />
-	<EditText
-	    android:id="@+id/baseUrl"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="http://"
-	    android:singleLine="true"/>
-	<TextView
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="Username:"
-	    android:enabled="false" />
-	<EditText
-	    android:id="@+id/username"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text=""
-	    android:singleLine="true"
-	    android:enabled="false" />
-	<TextView
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="Password:"
-	    android:singleLine="true"
-	    android:enabled="false" />
-	<EditText
-	    android:id="@+id/password"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text=""
-	    android:password="true"
-	    android:enabled="false" />
-	<Button
-        android:id="@+id/loginButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="Login" />
-</LinearLayout>
+	    android:layout_height="fill_parent">
+	    <ImageView
+	        android:src="@drawable/graylog"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/background" />
+		<TextView
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Base URL:" />
+		<EditText
+		    android:id="@+id/baseUrl"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text="http://"
+		    android:singleLine="true"/>
+		<TextView
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Username:"
+		    android:enabled="false" />
+		<EditText
+		    android:id="@+id/username"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text=""
+		    android:singleLine="true"
+		    android:enabled="false" />
+		<TextView
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Password:"
+		    android:singleLine="true"
+		    android:enabled="false" />
+		<EditText
+		    android:id="@+id/password"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text=""
+		    android:password="true"
+		    android:enabled="false" />
+		<Button
+	        android:id="@+id/loginButton"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Login" />
+	</LinearLayout>
+</ScrollView>
