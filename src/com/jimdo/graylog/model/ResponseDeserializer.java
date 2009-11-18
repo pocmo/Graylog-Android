@@ -84,7 +84,39 @@ public class ResponseDeserializer {
 	}
 	
 	/**
-	 * Deserialize a single log mesasge object
+	 * Deserialize categories from JSON
+	 * 
+	 * @param json Serialized categories (JSON)
+	 * 
+	 * @return List of deserialized categories
+	 */
+	public static ArrayList<Category> deserializeCategories(String json)
+	{
+		try {
+			ArrayList<Category> categories = new ArrayList<Category>();
+			JSONArray array = new JSONArray(json);
+
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject object = array.getJSONObject(i).getJSONObject("category");
+				Category category = new Category();
+				
+				category.setId(object.getInt("id"));
+				category.setHost(object.getString("filter_host"));
+				category.setTitle(object.getString("title"));
+				category.setMessage(object.getString("filter_message"));
+				
+				categories.add(category);
+			}
+			
+			return categories;
+		} catch(Exception e) {
+			Log.d(TAG, "Exception: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * Deserialize a single log message object
 	 * 
 	 * @param object json node to deserialize
 	 * @return
