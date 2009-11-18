@@ -5,6 +5,22 @@
             android:key="baseUrl"
             android:title="Default Base URL"
             android:summary="URL to your Graylog installation"
-            android:defaultValue="http://" />
+            android:defaultValue="http://"
+            android:singleLine="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="HTTP Authentification">
+        <EditTextPreference
+            android:key="httpUser"
+            android:title="Username"
+            android:summary="Username for HTTP Authentification"
+            android:defaultValue=""
+            android:singleLine="true" />
+        <EditTextPreference
+            android:key="httpPassword"
+            android:title="Password"
+            android:summary="Password for HTTP Authentification"
+            android:defaultValue=""
+            android:password="true"
+            android:singleLine="true" />
     </PreferenceCategory>
 </PreferenceScreen>

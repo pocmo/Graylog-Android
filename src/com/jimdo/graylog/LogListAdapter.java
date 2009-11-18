@@ -47,17 +47,6 @@ public class LogListAdapter extends BaseAdapter {
 	private boolean updateFromServer = true;
 	private boolean showLoadingItem = true;
 	
-	private String baseUrl;
-	
-	/**
-	 * Create a new LogListAdapter
-	 * 
-	 * @param baseUrl Base Url to Graylog
-	 */
-	public LogListAdapter(String baseUrl) {
-		this.baseUrl = baseUrl;
-	}
-	
 	/**
 	 * Get number of items
 	 */
@@ -128,8 +117,7 @@ public class LogListAdapter extends BaseAdapter {
 				Log.d(TAG, "Updating messages from server...");
 				
 				FetchLogTask task = new FetchLogTask(this);
-				UrlBuilder builder = new UrlBuilder(baseUrl);
-				task.execute(builder.getMessagesUrl(messages.size(), 20));
+				task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20));
 				updateFromServer = false;
 			}
 			

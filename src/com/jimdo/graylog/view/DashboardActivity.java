@@ -171,9 +171,7 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
     	Log.d(TAG, "Loading dashboard...");
     	
     	try {
-    		UrlBuilder builder = new UrlBuilder(baseUrl);
-    		Request request = new Request();
-    		String response = request.execute(builder.getDashboardUrl());
+    		String response = Request.getInstance().execute(UrlBuilder.getInstance().getDashboardUrl());
     		
     		Message msg = new Message();
     		Bundle bundle = new Bundle();

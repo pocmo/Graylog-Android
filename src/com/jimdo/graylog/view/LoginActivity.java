@@ -52,8 +52,6 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 	public static final String TAG = "Graylog/LoginActivity";
 	
 	private EditText baseUrl;
-	private EditText username;
-	private EditText password;
 	
 	private ProgressDialog dialog;
 	
@@ -64,8 +62,6 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
         setContentView(R.layout.login);
         
         this.baseUrl  = (EditText) findViewById(R.id.baseUrl);
-        this.username = (EditText) findViewById(R.id.username);
-        this.password = (EditText) findViewById(R.id.password);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         this.baseUrl.setText(prefs.getString("baseUrl", "http://"));
@@ -116,6 +112,17 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 		
 		String url = baseUrl.getText().toString(); 
 		
+		UrlBuilder builder = UrlBuilder.getInstance();
+		builder.setBaseUrl(url);
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		String httpUser = prefs.getString("httpUser", "");
+		String httpPassword = prefs.getString("httpPassword", "");
+		
+		if (httpUser != "" && httpPassword != "") {
+			Request.createInstance().setHttpAuth(httpUser, httpPassword);
+		}
+		
 		if (URLUtil.isValidUrl(url)) {
 			dialog = ProgressDialog.show(this, "Login..", "Trying to connect to server...", true, false);
 			new Thread(this).start();
@@ -129,13 +136,8 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 	 */
 	public void run()
 	{
-		String baseUrl  = this.baseUrl.getText().toString();
-		String username = this.username.getText().toString();
-		String password = this.password.getText().toString();
-		
-		UrlBuilder builder = new UrlBuilder(baseUrl);
-		Request request = new Request();
-		String response = request.execute(builder.getPingUrl());
+		UrlBuilder builder = UrlBuilder.getInstance();
+		String response = Request.getInstance().execute(builder.getPingUrl());
 		
 		if (response != null && response.equals("GrayLog/Pong")) {
 			// Login successful

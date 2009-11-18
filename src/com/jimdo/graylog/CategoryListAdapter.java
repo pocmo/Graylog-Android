@@ -17,18 +17,7 @@ public class CategoryListAdapter extends BaseAdapter {
 	public final static String TAG = "Graylog/CategoryListAdapter";
 	
 	private ArrayList<Category> categories = new ArrayList<Category>();
-	private String baseUrl;
 	private boolean showLoadingItem = true;
-	
-	/**
-	 * Create a new CategoryListAdapter
-	 * 
-	 * @param baseUrl Base Url to Graylog
-	 */
-	public CategoryListAdapter(String baseUrl)
-	{
-		this.baseUrl = baseUrl;
-	}
 	
 	/**
 	 * Get number of items
@@ -48,8 +37,7 @@ public class CategoryListAdapter extends BaseAdapter {
 	public void load()
 	{
 		FetchCategoriesTask task = new FetchCategoriesTask(this);
-		UrlBuilder builder = new UrlBuilder(baseUrl);
-		task.execute(builder.getCategoriesUrl());
+		task.execute(UrlBuilder.getInstance().getCategoriesUrl());
 		showLoadingItem = true;
 		notifyDataSetChanged();
 	}

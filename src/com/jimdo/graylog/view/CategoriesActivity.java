@@ -34,7 +34,6 @@ import com.jimdo.graylog.R;
 public class CategoriesActivity extends ListActivity {
 	public static final String TAG = "Graylog/CategoriesActivity";
 	
-	private String baseUrl;
 	private CategoryListAdapter adapter;
 	
     @Override
@@ -43,9 +42,7 @@ public class CategoriesActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categories);
         
-        this.baseUrl = getIntent().getExtras().getString("baseUrl");
-        
-        adapter = new CategoryListAdapter(baseUrl);
+        adapter = new CategoryListAdapter();
         setListAdapter(adapter);
      
         refresh();

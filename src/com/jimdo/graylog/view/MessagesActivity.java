@@ -42,9 +42,7 @@ public class MessagesActivity extends ListActivity {
     {
         super.onCreate(savedInstanceState);
         
-        String baseUrl = getIntent().getExtras().getString("baseUrl");
-        
-        adapter = new LogListAdapter(baseUrl);
+        adapter = new LogListAdapter();
         setListAdapter(adapter);
 		
         setContentView(R.layout.logs);

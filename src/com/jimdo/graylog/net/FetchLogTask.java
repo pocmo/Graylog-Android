@@ -50,8 +50,7 @@ public class FetchLogTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
 	{
 		try {
 			// Do Request....
-			Request request = new Request();
-			String response = request.execute(urls[0]);
+			String response = Request.getInstance().execute(urls[0]);
 			
 			// Deserialize Messages
 			return ResponseDeserializer.deserializeLogMessages(response);

@@ -28,7 +28,10 @@ import java.util.zip.GZIPInputStream;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.Log;
@@ -40,9 +43,53 @@ import android.util.Log;
  */
 public class Request
 {
-	private String TAG = "Graylog/Request";
+	private static final String TAG = "Graylog/Request";
+	private static Request instance;
 	
-	private DefaultHttpClient httpClient = new DefaultHttpClient();
+	private DefaultHttpClient httpClient;
+	
+	
+	/**
+	 * Private constructor
+	 */
+	private Request()
+	{
+		this.httpClient = new DefaultHttpClient();
+	}
+	
+	/**
+	 * Create a new Request Instance
+	 */
+	public static Request createInstance()
+	{
+		return instance = new Request();
+	}
+	
+	/**
+	 * Get Request Instance
+	 * 
+	 * @return
+	 */
+	public static Request getInstance()
+	{
+		if (instance == null) {
+			instance = createInstance();
+		}
+		
+		return instance;
+	}
+	
+	/**
+	 * Set Credentials for HTTPAuth
+	 */
+	public void setHttpAuth(String username, String password) {
+		UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(username, password);
+		
+		BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(AuthScope.ANY, credentials);
+        
+        httpClient.setCredentialsProvider(credentialsProvider); 
+	}
 	
 	/**
 	 * Execute a request

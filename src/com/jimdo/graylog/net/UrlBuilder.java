@@ -20,10 +20,6 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.net;
 
-import java.net.URL;
-
-import android.util.Log;
-
 /**
  * Helper class for creating API Urls
  * 
@@ -32,49 +28,25 @@ import android.util.Log;
 public class UrlBuilder {
 	public static final String TAG = "Graylog/UrlBuilder";
 	
+	private static UrlBuilder instance;
 	private String baseUrl;
 	
 	/**
-	 * Create a new UrlBuilder with given Base Url
-	 * 
-	 * @param baseUrl The base Url to Graylog
+	 * Private constructor
 	 */
-	public UrlBuilder(String baseUrl) {
-		// Test
-		this(baseUrl, "foo", "bar");
-		
-		setBaseUrl(baseUrl);
+	private UrlBuilder()
+	{
 	}
 	
 	/**
-	 * Create a new UrlBuilder with HTTP Auth Support
-	 * 
-	 * @param baseUrl The base Url to Graylog
-	 * @param httpUser Username for HTTP Auth
-	 * @param httpPassword Password for HTTP Auth
+	 * Get UrlBuilder Instance
 	 */
-	public UrlBuilder(String baseUrl, String httpUser, String httpPassword) {
-		try {
-			URL url = new URL(baseUrl);
-			
-			String protocol = url.getProtocol();
-			String host = url.getHost();
-			String path = url.getPath();
-			int port    = url.getPort();
-			
-			baseUrl = protocol + "://" + httpUser + ":" + httpPassword + "@" + host;
-			
-			if (port != -1) {
-				baseUrl += ":" + port;
-			}
-			
-			baseUrl += path;
-			
-		} catch(Exception e) {
-			Log.d(TAG, "Exception: " + e.getMessage());
+	public static UrlBuilder getInstance()	{
+		if (instance == null) {
+			instance = new UrlBuilder();
 		}
 		
-		setBaseUrl(baseUrl);
+		return instance;
 	}
 	
 	/**
@@ -82,7 +54,7 @@ public class UrlBuilder {
 	 * 
 	 * @param baseUrl The URL to Graylog
 	 */
-	private void setBaseUrl(String baseUrl) {
+	public void setBaseUrl(String baseUrl) {
 		if (baseUrl.length() > 0 && baseUrl.charAt(baseUrl.length() - 1) !=  '/') {
 			baseUrl = baseUrl + '/'; 
 		}

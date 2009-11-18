@@ -23,7 +23,7 @@ public class FetchCategoriesTask extends AsyncTask<String, Void, ArrayList<Categ
 	protected ArrayList<Category> doInBackground(String... urls)
 	{
 		try {
-			String response = new Request().execute(urls[0]);
+			String response = Request.getInstance().execute(urls[0]);
 			return ResponseDeserializer.deserializeCategories(response);
 		}
 		catch(Exception e) {
