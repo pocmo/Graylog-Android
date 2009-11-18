@@ -46,6 +46,14 @@ public class LogListAdapter extends BaseAdapter {
 	private ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
 	private boolean updateFromServer = true;
 	private boolean showLoadingItem = true;
+	private int categoryId = 0;
+	
+	/**
+	 * Set Category
+	 */
+	public void setCategory(int categoryId) {
+		this.categoryId = categoryId;
+	}
 	
 	/**
 	 * Get number of items
@@ -117,7 +125,13 @@ public class LogListAdapter extends BaseAdapter {
 				Log.d(TAG, "Updating messages from server...");
 				
 				FetchLogTask task = new FetchLogTask(this);
-				task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20));
+
+				if (categoryId == 0) {
+					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20));					
+				} else {
+					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20, categoryId));
+				}
+				
 				updateFromServer = false;
 			}
 			

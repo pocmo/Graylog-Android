@@ -85,10 +85,24 @@ public class UrlBuilder {
 	/**
 	 * Get Url for Log Messages
 	 * 
+	 * @param offset
+	 * @param limit
 	 * @return The Url
 	 */
 	public String getMessagesUrl(int offset, int limit) {
 		return baseUrl + "api/getmessages?offset=" + offset + "&limit=" + limit;
+	}
+	
+	/**
+	 * Get Url for Log Messages of a specific category
+	 * 
+	 * @param offset
+	 * @param limit
+	 * @param categoryId
+	 * @return The Url
+	 */
+	public String getMessagesUrl(int offset, int limit, int categoryId)	{
+		return getMessagesUrl(offset, limit) + "&category=" + categoryId;
 	}
 	
 	/**

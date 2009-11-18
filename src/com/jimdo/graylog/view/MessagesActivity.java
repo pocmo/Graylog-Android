@@ -22,6 +22,7 @@ package com.jimdo.graylog.view;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,14 +36,24 @@ import com.jimdo.graylog.R;
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
 public class MessagesActivity extends ListActivity {
+	public static final String TAG = "Graylog/MessagesActivity";
 	private LogListAdapter adapter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        
+
         adapter = new LogListAdapter();
+
+        // Use Category if given
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("category_id")) {
+	        int categoryId = getIntent().getExtras().getInt("category_id", 0);
+	        if (categoryId != 0) {
+	        	adapter.setCategory(categoryId);
+	        }
+        }
+        
         setListAdapter(adapter);
 		
         setContentView(R.layout.logs);

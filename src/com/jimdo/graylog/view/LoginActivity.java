@@ -61,7 +61,7 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         
-        this.baseUrl  = (EditText) findViewById(R.id.baseUrl);
+        this.baseUrl = (EditText) findViewById(R.id.baseUrl);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         this.baseUrl.setText(prefs.getString("baseUrl", "http://"));
@@ -166,9 +166,7 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 1) {
-				Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-				intent.putExtra("baseUrl", baseUrl.getText().toString());
-				startActivity(intent);
+				startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 			} else {
 				loginFailed();
 			}

@@ -2,16 +2,18 @@ package com.jimdo.graylog;
 
 import java.util.ArrayList;
 
-import com.jimdo.graylog.model.Category;
-import com.jimdo.graylog.net.FetchCategoriesTask;
-import com.jimdo.graylog.net.UrlBuilder;
-
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.jimdo.graylog.model.Category;
+import com.jimdo.graylog.net.FetchCategoriesTask;
+import com.jimdo.graylog.net.UrlBuilder;
 
 public class CategoryListAdapter extends BaseAdapter {
 	public final static String TAG = "Graylog/CategoryListAdapter";
@@ -59,9 +61,9 @@ public class CategoryListAdapter extends BaseAdapter {
 	/**
 	 * Get item at specified location
 	 */
-	public Object getItem(int location)
+	public Category getItem(int location)
 	{
-		return location;
+		return categories.get(location);
 	}
 	
 	/**
@@ -69,7 +71,7 @@ public class CategoryListAdapter extends BaseAdapter {
 	 */
 	public long getItemId(int location)
 	{
-		return location;
+		return getItem(location).getId();
 	}
 	
 	/**

@@ -21,7 +21,11 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 package com.jimdo.graylog.view;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
 import com.jimdo.graylog.CategoryListAdapter;
 import com.jimdo.graylog.R;
@@ -55,5 +59,15 @@ public class CategoriesActivity extends ListActivity {
     {
     	adapter.load();
     }
-
+    
+	/**
+	 * On category selected..
+	 */
+    @Override
+	public void onListItemClick(ListView l, View v,  int position, long id)
+	{
+		Intent intent = new Intent(CategoriesActivity.this, MessagesActivity.class);
+		intent.putExtra("category_id", (int) id);
+		startActivity(intent);
+	}
 }

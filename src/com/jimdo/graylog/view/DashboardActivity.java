@@ -52,7 +52,6 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
 	public static final String TAG = "Graylog/DashboardActivity";
 	
 	private ProgressDialog dialog;
-	private String baseUrl;
 	
 	private TextView message;
 	private TextView status;
@@ -65,7 +64,6 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
         
-        this.baseUrl  = getIntent().getExtras().getString("baseUrl");
         this.message  = (TextView) findViewById(R.id.message);
         this.status   = (TextView) findViewById(R.id.status);
         this.footer   = (TextView) findViewById(R.id.footer);
@@ -108,18 +106,12 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
      */
     public void onClick(View v)
     {
-    	Intent intent;
-    	
     	switch (v.getId()) {
     		case R.id.messagesButton:
-    			intent = new Intent(DashboardActivity.this, MessagesActivity.class);
-    			intent.putExtra("baseUrl", baseUrl);
-    			startActivity(intent);
+    			startActivity(new Intent(DashboardActivity.this, MessagesActivity.class));
     			break;
     		case R.id.categoriesButton:
-    			intent = new Intent(DashboardActivity.this, CategoriesActivity.class);
-    			intent.putExtra("baseUrl", baseUrl);
-    			startActivity(intent);
+    			startActivity(new Intent(DashboardActivity.this, CategoriesActivity.class));
     			break;
     	}
     }
