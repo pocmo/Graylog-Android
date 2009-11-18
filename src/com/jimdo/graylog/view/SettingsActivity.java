@@ -20,6 +20,8 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.view;
 
+import com.jimdo.graylog.R;
+
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
@@ -33,5 +35,6 @@ public class SettingsActivity extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.settings);
     }
 }

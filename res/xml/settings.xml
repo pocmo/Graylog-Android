@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General">
+        <EditTextPreference
+            android:key="baseUrl"
+            android:title="Default Base URL"
+            android:summary="URL to your Graylog installation"
+            android:defaultValue="http://" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -23,9 +23,11 @@ package com.jimdo.graylog.view;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -65,6 +67,9 @@ public class LoginActivity extends Activity implements OnClickListener, Runnable
         this.username = (EditText) findViewById(R.id.username);
         this.password = (EditText) findViewById(R.id.password);
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        this.baseUrl.setText(prefs.getString("baseUrl", "http://"));
+        
         Button button = (Button) findViewById(R.id.loginButton);
         button.setOnClickListener(this);
     }
