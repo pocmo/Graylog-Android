@@ -36,6 +36,11 @@
             android:name=".view.SettingsActivity"
             android:label="Graylog : Settings">
         </activity>
+        <activity
+            android:name=".view.FilterActivity"
+            android:label="Graylog : Filter"
+            android:theme="@android:style/Theme.Translucent">
+        </activity>
     </application>
     
     <uses-permission android:name="android.permission.INTERNET" />
