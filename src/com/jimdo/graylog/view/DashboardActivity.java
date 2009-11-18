@@ -108,14 +108,18 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
      */
     public void onClick(View v)
     {
+    	Intent intent;
+    	
     	switch (v.getId()) {
     		case R.id.messagesButton:
-    			Intent intent = new Intent(DashboardActivity.this, MessagesActivity.class);
+    			intent = new Intent(DashboardActivity.this, MessagesActivity.class);
     			intent.putExtra("baseUrl", baseUrl);
     			startActivity(intent);
     			break;
     		case R.id.categoriesButton:
-    			startActivity(new Intent(DashboardActivity.this, CategoriesActivity.class));
+    			intent = new Intent(DashboardActivity.this, CategoriesActivity.class);
+    			intent.putExtra("baseUrl", baseUrl);
+    			startActivity(intent);
     			break;
     	}
     }

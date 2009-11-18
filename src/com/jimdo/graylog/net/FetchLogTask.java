@@ -22,8 +22,6 @@ package com.jimdo.graylog.net;
 
 import java.util.ArrayList;
 
-import org.apache.http.client.protocol.RequestAddCookies;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -69,7 +67,6 @@ public class FetchLogTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
 	{
 		if (messages != null) {
 			adapter.mergeWith(messages);
-			//adapter.notifyDataSetChanged();
 		}
 	}
 }

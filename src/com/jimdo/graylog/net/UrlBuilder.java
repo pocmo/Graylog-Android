@@ -118,4 +118,13 @@ public class UrlBuilder {
 	public String getMessagesUrl(int offset, int limit) {
 		return baseUrl + "api/getmessages?offset=" + offset + "&limit=" + limit;
 	}
+	
+	/**
+	 * Get Url for Categories
+	 * 
+	 * @return The Url
+	 */
+	public String getCategoriesUrl() {
+		return baseUrl + "api/getcategories";
+	}
 }

@@ -23,15 +23,40 @@ package com.jimdo.graylog.view;
 import android.app.ListActivity;
 import android.os.Bundle;
 
+import com.jimdo.graylog.CategoryListAdapter;
+import com.jimdo.graylog.R;
+
 /**
  * Shows the available categories
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
 public class CategoriesActivity extends ListActivity {
+	public static final String TAG = "Graylog/CategoriesActivity";
+	
+	private String baseUrl;
+	private CategoryListAdapter adapter;
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.categories);
+        
+        this.baseUrl = getIntent().getExtras().getString("baseUrl");
+        
+        adapter = new CategoryListAdapter(baseUrl);
+        setListAdapter(adapter);
+     
+        refresh();
     }
+    
+    /**
+     * Refresh categories, reload from server
+     */
+    public void refresh()
+    {
+    	adapter.load();
+    }
+
 }

@@ -14,6 +14,6 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="fill_parent"
 	    android:textColor="#ff3366"
-	    android:text="Loading messages..."
+	    android:text="Loading new items..."
 	    android:gravity="center_vertical" />
 </LinearLayout>
