@@ -92,9 +92,9 @@ public class MessageListAdapter extends BaseAdapter {
 	/**
 	 * Get item at specified location
 	 */
-	public Object getItem(int location)
+	public LogMessage getItem(int location)
 	{
-		return location;
+		return messages.get(location);
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class MessageListAdapter extends BaseAdapter {
 	 */
 	public long getItemId(int location)
 	{
-		return location;
+		return messages.get(location).getId();
 	}
 	
 	/**
@@ -166,7 +166,7 @@ public class MessageListAdapter extends BaseAdapter {
 		TextView tv;
 		
 		tv = (TextView) v.findViewById(R.id.message);
-		tv.setText(message.getText().length() > 140 ? message.getText().substring(0, 139) : message.getText());
+		tv.setText(message.getText().length() > 140 ? message.getText().substring(0, 140) + " [..]" : message.getText());
 		
 		tv = (TextView) v.findViewById(R.id.footer);
 		tv.setText(message.getRelativeTime() + " from " + message.getHost());

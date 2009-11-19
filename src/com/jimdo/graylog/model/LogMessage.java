@@ -20,6 +20,7 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
@@ -27,8 +28,10 @@ import java.util.Date;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LogMessage
+public class LogMessage implements Serializable
 {
+	private static final long serialVersionUID = -1131211604016549141L;
+	
 	private int id;
 	private String host;
 	private int priority;

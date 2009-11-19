@@ -95,7 +95,7 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
     	LogMessage lastMessage = dashboard.getLastMessage();
     	String text = lastMessage.getText();
     	
-    	message.setText(text.length() > 140 ? text.substring(0, 140) : text);
+    	message.setText(text.length() > 140 ? text.substring(0, 140) + " [..]" : text);
     	status.setText(dashboard.getMessages() + " messages in the last " + dashboard.getTimeSpan() + " minutes");
     	footer.setText(lastMessage.getRelativeTime() + " from " + lastMessage.getHost());
     	priority.setText(Priority.getReadable(lastMessage.getPriority()));

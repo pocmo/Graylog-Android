@@ -23,14 +23,16 @@ package com.jimdo.graylog.view;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 import com.jimdo.graylog.R;
 import com.jimdo.graylog.adapter.MessageListAdapter;
 import com.jimdo.graylog.model.Filter;
+import com.jimdo.graylog.model.LogMessage;
 
 /**
  * Shows a list of log messages
@@ -59,7 +61,6 @@ public class MessagesActivity extends ListActivity {
         }
         
         setListAdapter(adapter);
-		
         setContentView(R.layout.logs);
     }
     
@@ -106,5 +107,15 @@ public class MessagesActivity extends ListActivity {
 				adapter.refresh();
 			}
 		}
+	}
+	
+	public void onListItemClick(ListView l, View v,  int position, long id)
+	{
+		LogMessage message = adapter.getItem(position);
+		
+		Intent intent = new Intent(MessagesActivity.this, InspectActivity.class);
+		intent.putExtra("message", message);
+		
+		startActivity(intent);
 	}
 }

@@ -41,6 +41,10 @@
             android:label="Graylog : Filter"
             android:theme="@android:style/Theme.Translucent">
         </activity>
+        <activity
+            android:name=".view.InspectActivity"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
     </application>
     
     <uses-permission android:name="android.permission.INTERNET" />
