@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.jimdo.graylog.R;
 import com.jimdo.graylog.model.LogMessage;
+import com.jimdo.graylog.model.Priority;
 
 /**
  * Inspect a log message (full view)
@@ -41,6 +42,10 @@ public class InspectActivity extends Activity
 		setContentView(R.layout.inspect);
 		
 		LogMessage message = (LogMessage) getIntent().getExtras().get("message");
+
 		((TextView) findViewById(R.id.message)).setText(message.getText());
+		((TextView) findViewById(R.id.footer)).setText(message.getRelativeTime() + " from " + message.getHost());
+		((TextView) findViewById(R.id.priority)).setText(Priority.getReadable(message.getPriority()));
+
 	}
 }
