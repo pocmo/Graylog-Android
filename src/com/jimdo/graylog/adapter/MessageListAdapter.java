@@ -31,6 +31,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jimdo.graylog.R;
+import com.jimdo.graylog.model.Filter;
 import com.jimdo.graylog.model.LogMessage;
 import com.jimdo.graylog.model.Priority;
 import com.jimdo.graylog.net.FetchMessagesTask;
@@ -47,13 +48,33 @@ public class MessageListAdapter extends BaseAdapter {
 	private ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
 	private boolean updateFromServer = true;
 	private boolean showLoadingItem = true;
+	private Filter filter;
 	private int categoryId = 0;
 	
 	/**
 	 * Set Category
 	 */
-	public void setCategory(int categoryId) {
+	public void setCategory(int categoryId)
+	{
 		this.categoryId = categoryId;
+	}
+	
+	/**
+	 * Set Filter
+	 */
+	public void setFilter(Filter filter)
+	{
+		this.filter = filter;
+	}
+	
+	/**
+	 * Get Filter
+	 * 
+	 * @return currently assigned filter
+	 */
+	public Filter getFilter()
+	{
+		return filter;
 	}
 	
 	/**
@@ -110,6 +131,7 @@ public class MessageListAdapter extends BaseAdapter {
 	public void refresh()
 	{
 		messages.clear();
+		showLoadingItem = true;
 		updateFromServer = true;
 		notifyDataSetChanged();
 	}
@@ -123,14 +145,12 @@ public class MessageListAdapter extends BaseAdapter {
 		
 		if (location == messages.size()) {
 			if (updateFromServer) {
-				Log.d(TAG, "Updating messages from server...");
-				
 				FetchMessagesTask task = new FetchMessagesTask(this);
 
 				if (categoryId == 0) {
-					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20));					
+					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20, filter));					
 				} else {
-					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20, categoryId));
+					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20, filter, categoryId));
 				}
 				
 				updateFromServer = false;

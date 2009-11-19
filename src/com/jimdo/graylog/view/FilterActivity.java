@@ -21,20 +21,50 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 package com.jimdo.graylog.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.jimdo.graylog.R;
+import com.jimdo.graylog.model.Filter;
 
 /**
  * Activity for Filter "Search"
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class FilterActivity extends Activity {
+public class FilterActivity extends Activity implements OnClickListener {
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filter);
+        
+        // Set filter if used before
+        Filter filter = (Filter) getIntent().getExtras().get("filter");
+        if (filter != null) {
+        	((TextView) findViewById(R.id.host)).setText(filter.getHost());
+        	((TextView) findViewById(R.id.message)).setText(filter.getMessage());
+        }
+        
+        findViewById(R.id.filter).setOnClickListener(this);
     }
+	
+	/**
+	 * On filter..
+	 */
+	public void onClick(View v) {
+		Filter filter = new Filter();
+		filter.setHost(((TextView) findViewById(R.id.host)).getText().toString());
+		filter.setMessage(((TextView) findViewById(R.id.message)).getText().toString());
+		
+		Intent intent = new Intent();
+		intent.putExtra("filter", filter);
+		
+		setResult(RESULT_OK, intent);
+		
+		this.finish();
+	}
 }

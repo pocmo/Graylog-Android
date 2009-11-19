@@ -20,6 +20,8 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
 package com.jimdo.graylog.net;
 
+import com.jimdo.graylog.model.Filter;
+
 /**
  * Helper class for creating API Urls
  * 
@@ -89,8 +91,8 @@ public class UrlBuilder {
 	 * @param limit
 	 * @return The Url
 	 */
-	public String getMessagesUrl(int offset, int limit) {
-		return baseUrl + "api/getmessages?offset=" + offset + "&limit=" + limit;
+	public String getMessagesUrl(int offset, int limit, Filter filter) {
+		return baseUrl + applyFilter(filter, "api/getmessages?offset=" + offset + "&limit=" + limit);
 	}
 	
 	/**
@@ -101,8 +103,8 @@ public class UrlBuilder {
 	 * @param categoryId
 	 * @return The Url
 	 */
-	public String getMessagesUrl(int offset, int limit, int categoryId)	{
-		return getMessagesUrl(offset, limit) + "&category=" + categoryId;
+	public String getMessagesUrl(int offset, int limit, Filter filter, int categoryId)	{
+		return getMessagesUrl(offset, limit, filter) + "&category=" + categoryId;
 	}
 	
 	/**
@@ -112,5 +114,22 @@ public class UrlBuilder {
 	 */
 	public String getCategoriesUrl() {
 		return baseUrl + "api/getcategories";
+	}
+	
+	/**
+	 * Apply filter to Url
+	 */
+	private String applyFilter(Filter filter, String url) {
+		if (filter != null) {
+			if (!"".equals(filter.getHost())) {
+				url += "&filter[host]=" + filter.getHost();
+			}
+			
+			if (!"".equals(filter.getMessage())) {
+				url += "&filter[message]=" + filter.getMessage();
+			}
+		}
+		
+		return url;
 	}
 }

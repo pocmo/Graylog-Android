@@ -23,12 +23,14 @@ package com.jimdo.graylog.view;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.jimdo.graylog.R;
-import com.jimdo.graylog.adapter.LogListAdapter;
+import com.jimdo.graylog.adapter.MessageListAdapter;
+import com.jimdo.graylog.model.Filter;
 
 /**
  * Shows a list of log messages
@@ -37,14 +39,16 @@ import com.jimdo.graylog.adapter.LogListAdapter;
  */
 public class MessagesActivity extends ListActivity {
 	public static final String TAG = "Graylog/MessagesActivity";
-	private LogListAdapter adapter;
+	public static final int SET_FILTER = 0;
+	
+	private MessageListAdapter adapter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        adapter = new LogListAdapter();
+        adapter = new MessageListAdapter();
 
         // Use Category if given
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("category_id")) {
@@ -84,9 +88,23 @@ public class MessagesActivity extends ListActivity {
 				adapter.refresh();
 				break;
 			case R.id.filter:
-				startActivity(new Intent(MessagesActivity.this, FilterActivity.class));
+				Intent intent = new Intent(MessagesActivity.this, FilterActivity.class);
+				intent.putExtra("filter", adapter.getFilter());
+				startActivityForResult(intent, SET_FILTER);
 				break;
 		}
 		return true;
+	}
+	
+	/**
+	 * On filter set
+	 */
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == SET_FILTER) {
+			if (resultCode == RESULT_OK) {
+				adapter.setFilter((Filter) data.getExtras().get("filter"));
+				adapter.refresh();
+			}
+		}
 	}
 }

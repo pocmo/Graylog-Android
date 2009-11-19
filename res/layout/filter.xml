@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Host:" /> 
     <EditText
+        android:id="@+id/host"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:singleLine="true" />
@@ -18,10 +19,12 @@
         android:layout_height="wrap_content"
         android:text="Message:" /> 
     <EditText
+        android:id="@+id/message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:singleLine="true" />
     <Button
+        android:id="@+id/filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Filter" />
