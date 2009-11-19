@@ -30,8 +30,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jimdo.graylog.R;
-import com.jimdo.graylog.R.id;
-import com.jimdo.graylog.R.layout;
 import com.jimdo.graylog.model.Category;
 import com.jimdo.graylog.net.FetchCategoriesTask;
 import com.jimdo.graylog.net.UrlBuilder;

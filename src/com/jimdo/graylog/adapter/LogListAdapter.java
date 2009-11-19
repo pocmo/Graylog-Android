@@ -31,8 +31,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jimdo.graylog.R;
-import com.jimdo.graylog.R.id;
-import com.jimdo.graylog.R.layout;
 import com.jimdo.graylog.model.LogMessage;
 import com.jimdo.graylog.model.Priority;
 import com.jimdo.graylog.net.FetchLogTask;
