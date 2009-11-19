@@ -94,7 +94,10 @@ public class MessageListAdapter extends BaseAdapter {
 	 */
 	public LogMessage getItem(int location)
 	{
-		return messages.get(location);
+		if (location < messages.size()) {
+			return messages.get(location);
+		}
+		return null;
 	}
 	
 	/**
@@ -102,7 +105,10 @@ public class MessageListAdapter extends BaseAdapter {
 	 */
 	public long getItemId(int location)
 	{
-		return messages.get(location).getId();
+		if (location < messages.size()) {
+			messages.get(location).getId();
+		}
+		return location;
 	}
 	
 	/**
