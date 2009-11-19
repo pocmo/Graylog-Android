@@ -18,7 +18,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 */
-package com.jimdo.graylog;
+package com.jimdo.graylog.adapter;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.jimdo.graylog.R;
+import com.jimdo.graylog.R.id;
+import com.jimdo.graylog.R.layout;
 import com.jimdo.graylog.model.Category;
 import com.jimdo.graylog.net.FetchCategoriesTask;
 import com.jimdo.graylog.net.UrlBuilder;
