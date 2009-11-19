@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.jimdo.graylog.LogListAdapter;
+import com.jimdo.graylog.adapter.LogListAdapter;
 import com.jimdo.graylog.model.LogMessage;
 import com.jimdo.graylog.model.ResponseDeserializer;
 

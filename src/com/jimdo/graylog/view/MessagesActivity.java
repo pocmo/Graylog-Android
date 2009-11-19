@@ -21,13 +21,14 @@ along with Graylog (Android Client). If not, see <http://www.gnu.org/licenses/>.
 package com.jimdo.graylog.view;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.jimdo.graylog.LogListAdapter;
 import com.jimdo.graylog.R;
+import com.jimdo.graylog.adapter.LogListAdapter;
 
 /**
  * Shows a list of log messages
@@ -81,6 +82,9 @@ public class MessagesActivity extends ListActivity {
 		switch (item.getItemId()) {
 			case R.id.refresh:
 				adapter.refresh();
+				break;
+			case R.id.filter:
+				startActivity(new Intent(MessagesActivity.this, FilterActivity.class));
 				break;
 		}
 		return true;

@@ -26,8 +26,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import com.jimdo.graylog.CategoryListAdapter;
 import com.jimdo.graylog.R;
+import com.jimdo.graylog.adapter.CategoryListAdapter;
 
 /**
  * Shows the available categories

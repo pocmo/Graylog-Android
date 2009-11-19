@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.jimdo.graylog.CategoryListAdapter;
+import com.jimdo.graylog.adapter.CategoryListAdapter;
 import com.jimdo.graylog.model.Category;
 import com.jimdo.graylog.model.ResponseDeserializer;
 
