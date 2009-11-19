@@ -44,7 +44,7 @@ public class InspectActivity extends Activity
 		LogMessage message = (LogMessage) getIntent().getExtras().get("message");
 
 		((TextView) findViewById(R.id.message)).setText(message.getText());
-		((TextView) findViewById(R.id.footer)).setText(message.getRelativeTime() + " from " + message.getHost());
+		((TextView) findViewById(R.id.header)).setText(message.getRelativeTime() + " from " + message.getHost());
 		((TextView) findViewById(R.id.priority)).setText(Priority.getReadable(message.getPriority()));
 
 	}
