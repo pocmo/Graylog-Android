@@ -33,7 +33,7 @@ import android.widget.TextView;
 import com.jimdo.graylog.R;
 import com.jimdo.graylog.model.LogMessage;
 import com.jimdo.graylog.model.Priority;
-import com.jimdo.graylog.net.FetchLogTask;
+import com.jimdo.graylog.net.FetchMessagesTask;
 import com.jimdo.graylog.net.UrlBuilder;
 
 /**
@@ -41,7 +41,7 @@ import com.jimdo.graylog.net.UrlBuilder;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class LogListAdapter extends BaseAdapter {
+public class MessageListAdapter extends BaseAdapter {
 	public final static String TAG = "Graylog/LogListAdapter"; 
 	
 	private ArrayList<LogMessage> messages = new ArrayList<LogMessage>();
@@ -125,7 +125,7 @@ public class LogListAdapter extends BaseAdapter {
 			if (updateFromServer) {
 				Log.d(TAG, "Updating messages from server...");
 				
-				FetchLogTask task = new FetchLogTask(this);
+				FetchMessagesTask task = new FetchMessagesTask(this);
 
 				if (categoryId == 0) {
 					task.execute(UrlBuilder.getInstance().getMessagesUrl(messages.size(), 20));					

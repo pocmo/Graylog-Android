@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.jimdo.graylog.adapter.LogListAdapter;
+import com.jimdo.graylog.adapter.MessageListAdapter;
 import com.jimdo.graylog.model.LogMessage;
 import com.jimdo.graylog.model.ResponseDeserializer;
 
@@ -34,13 +34,13 @@ import com.jimdo.graylog.model.ResponseDeserializer;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class FetchLogTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
+public class FetchMessagesTask extends AsyncTask<String, Void, ArrayList<LogMessage>>
 {
 	public static final String TAG = "Graylog/FetchLogTask";
 	
-	private LogListAdapter adapter;
+	private MessageListAdapter adapter;
 	
-	public FetchLogTask(LogListAdapter adapter)
+	public FetchMessagesTask(MessageListAdapter adapter)
 	{
 		this.adapter = adapter;
 	}
