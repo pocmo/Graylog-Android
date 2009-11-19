@@ -52,11 +52,13 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
 	public static final String TAG = "Graylog/DashboardActivity";
 	
 	private ProgressDialog dialog;
-	
+
 	private TextView message;
 	private TextView status;
 	private TextView footer;
 	private TextView priority;
+	
+	private Dashboard dashboard;
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -69,6 +71,7 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
         this.footer   = (TextView) findViewById(R.id.footer);
         this.priority = (TextView) findViewById(R.id.priority);
         
+        this.message.setOnClickListener(this);
         findViewById(R.id.messagesButton).setOnClickListener(this);
         findViewById(R.id.categoriesButton).setOnClickListener(this);
         
@@ -92,6 +95,8 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
      */
     public void update(Dashboard dashboard)
     {
+    	this.dashboard = dashboard;
+    	
     	LogMessage lastMessage = dashboard.getLastMessage();
     	String text = lastMessage.getText();
     	
@@ -107,6 +112,13 @@ public class DashboardActivity extends Activity implements OnClickListener, Runn
     public void onClick(View v)
     {
     	switch (v.getId()) {
+			case R.id.message:
+				if (dashboard != null) {
+					Intent intent = new Intent(DashboardActivity.this, InspectActivity.class);
+					intent.putExtra("message", dashboard.getLastMessage());
+					startActivity(intent);
+				}
+				break;
     		case R.id.messagesButton:
     			startActivity(new Intent(DashboardActivity.this, MessagesActivity.class));
     			break;
