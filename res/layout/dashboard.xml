@@ -15,51 +15,55 @@
         android:text=""
         android:gravity="center_horizontal"
         android:padding="5px" />
-    <TextView
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Last Message:"
-        android:padding="5px"
-        android:textSize="16px" />
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5px"
-        android:paddingRight="5px"
-        android:text=""
-        android:textSize="14px"
-        android:textColor="#d4d0c8"
-        android:background="#555555" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#333333">
-        <TextView
-            android:id="@+id/priority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Emergency"
-            android:textSize="11px"
-            android:padding="3px" />
+         android:layout_height="fill_parent">
 	    <TextView
-	        android:id="@+id/footer"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:text="Last Message:"
+	        android:padding="5px"
+	        android:textSize="16px" />
+	    <TextView
+	        android:id="@+id/message"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="5px"
+	        android:paddingRight="5px"
 	        android:text=""
-	        android:textSize="12px"
-	        android:textColor="#ff3366"
-            android:padding="3px" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/messagesButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Messages" />
-    <Button
-        android:id="@+id/categoriesButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Categories" />
+	        android:textSize="14px"
+	        android:textColor="#d4d0c8"
+	        android:background="#555555" />
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:background="#333333">
+	        <TextView
+	            android:id="@+id/priority"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Emergency"
+	            android:textSize="11px"
+	            android:padding="3px" />
+		    <TextView
+		        android:id="@+id/footer"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textSize="12px"
+		        android:textColor="#ff3366"
+	            android:padding="3px" />
+	    </LinearLayout>
+	    <Button
+	        android:id="@+id/messagesButton"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Messages" />
+	    <Button
+	        android:id="@+id/categoriesButton"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Categories" />
+    </ScrollView>
 </LinearLayout>
