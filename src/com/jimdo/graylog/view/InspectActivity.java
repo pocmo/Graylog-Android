@@ -22,7 +22,9 @@ package com.jimdo.graylog.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.jimdo.graylog.R;
@@ -34,7 +36,7 @@ import com.jimdo.graylog.model.Priority;
  * 
  * @author Sebastian Kaspari <s.kaspari@googlemail.com>
  */
-public class InspectActivity extends Activity
+public class InspectActivity extends Activity implements OnClickListener
 {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +48,15 @@ public class InspectActivity extends Activity
 		((TextView) findViewById(R.id.message)).setText(message.getText());
 		((TextView) findViewById(R.id.header)).setText(message.getRelativeTime() + " from " + message.getHost());
 		((TextView) findViewById(R.id.priority)).setText(Priority.getReadable(message.getPriority()));
+		
+		((TextView) findViewById(R.id.message)).setOnClickListener(this);
+	}
 
+	/**
+	 * On click close the activity
+	 */
+	public void onClick(View v) {
+		android.util.Log.d("foo", "Close");
+		finish();
 	}
 }
